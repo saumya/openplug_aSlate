@@ -1,1 +1,0 @@
-A basic freehand drawing application made with openplug studio.
