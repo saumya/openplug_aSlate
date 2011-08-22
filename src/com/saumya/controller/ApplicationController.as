@@ -1,8 +1,10 @@
 package com.saumya.controller
-{
+{	
 	import flash.display.Graphics;
+	import flash.display.Sprite;
+	import flash.events.Event;
 	import flash.events.TouchEvent;
-
+	
 	public class ApplicationController
 	{
 		
@@ -26,12 +28,6 @@ package com.saumya.controller
 		
 		private function onTouchStart(e:TouchEvent):void
 		{
-			/*
-			var g:Graphics=this.appView.slate.graphics;
-			g.lineStyle(1,0xFF0000);
-			g.beginFill(0x00FF00);
-			g.drawCircle(e.localX,e.localY,5);
-			*/
 			this.board.moveTo(e.localX,e.localY);
 		}
 		
@@ -46,14 +42,13 @@ package com.saumya.controller
 		
 		private function onTouchMove(e:TouchEvent):void
 		{
-			this.board.lineStyle(1,0xFFFFFF);
+			this.board.lineStyle(this.appView.activePenThickness,this.appView.activeColor);
 			this.board.beginFill(0x00FF00);
 			//g.drawCircle(e.localX,e.localY,5);
 			
 			this.board.lineTo(e.localX,e.localY);
 			this.board.moveTo(e.localX,e.localY);
 		}
-		
 		
 	}
 }

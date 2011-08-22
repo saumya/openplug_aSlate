@@ -1,20 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:WindowedApplication xmlns:mx="http://www.adobe.com/2006/mxml" 
 						xmlns:mob="openplug.elips.controls.*" 
+						xmlns:view="com.saumya.view.*"
 						layout="absolute" 
-						creationComplete="onCreation(event)">
+						creationComplete="onCreation(event)" >
 	<mx:Script>
 		<![CDATA[
 			import com.saumya.controller.ApplicationController;
+			import com.saumya.view.ColorPickerComponent;
 			
+			import mx.core.UIComponent;
 			import mx.events.FlexEvent;
 			
+			public var activeColor:uint=0xFFFFFF;
+			public var activePenThickness:uint=1;
+			
 			protected function onCreation(event:FlexEvent):void
-			{
+			{		
+				/*
+				var c:ColorPickerComponent=new ColorPickerComponent();
+				this.addChild(c);
+				*/
+				//initialise controller
 				var controller:ApplicationController=new ApplicationController(this);
+			}
+			
+			protected function onBlueTouch(event:TouchEvent):void
+			{
+				this.activeColor=0x0000FF;
+			}
+			
+			protected function onGreenTouch(event:TouchEvent):void
+			{
+				this.activeColor=0x00ff00;
+			}
+			
+			protected function onRedTouch(event:TouchEvent):void
+			{
+				this.activeColor=0xff0000;
+			}
+			
+			protected function onVioletTouch(event:TouchEvent):void
+			{
+				this.activeColor=0xff00ff;
+			}
+			
+			protected function onYellowTouch(event:TouchEvent):void
+			{
+				this.activeColor=0xffff00;
+			}
+			
+			protected function onOneTouch(event:TouchEvent):void
+			{
+				this.activePenThickness=1;
+			}
+			protected function onTwoTouch(event:TouchEvent):void
+			{
+				this.activePenThickness=2;
+			}
+			protected function onThreeTouch(event:TouchEvent):void
+			{
+				this.activePenThickness=3;
+			}
+			protected function onFourTouch(event:TouchEvent):void
+			{
+				this.activePenThickness=4;
 			}
 			
 		]]>
 	</mx:Script>
-<mx:Canvas id="slate" width="100%" height="100%" />
+	<mx:Canvas id="slate" width="100%" height="100%">
+		<mx:HBox horizontalGap="0" id="colorPallete">
+			<mob:Image width="50" height="50" source="assets/blue.png" touchTap="onBlueTouch(event)" />
+			<mob:Image width="50" height="50" source="assets/green.png" touchTap="onGreenTouch(event)" />
+			<mob:Image width="50" height="50" source="assets/red.png" touchTap="onRedTouch(event)" />
+			<mob:Image width="50" height="50" source="assets/violet.png" touchTap="onVioletTouch(event)" />
+			<mob:Image width="50" height="50" source="assets/yellow.png" touchTap="onYellowTouch(event)" />
+		</mx:HBox>
+		<mx:HBox horizontalGap="0" id="penPallete" y="{this.slate.height-50}">
+			<mob:Image width="50" height="50" source="assets/ptOne.png" touchTap="onOneTouch(event)" />
+			<mob:Image width="50" height="50" source="assets/ptTwo.png" touchTap="onTwoTouch(event)" />
+			<mob:Image width="50" height="50" source="assets/ptThree.png" touchTap="onThreeTouch(event)" />
+			<mob:Image width="50" height="50" source="assets/ptFour.png" touchTap="onFourTouch(event)" />
+		</mx:HBox>
+	</mx:Canvas>
 </mx:WindowedApplication>
